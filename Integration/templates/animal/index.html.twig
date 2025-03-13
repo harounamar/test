@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% block css %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.min.css') }}">
+
+        <style>
+            h1.catalogue-title {
+                text-align: center; /* Centrer le texte */
+                color: #006400; /* Appliquer la couleur verte */
+            }
+
+            /* Appliquer la couleur verte aux en-têtes de la table */
+            .table th {
+                background-color: #006400;
+                color: white;
+            }
+
+            .table td {
+                color: #006400; /* Couleur verte pour les données */
+            }
+
+            .table.mb-3 {
+                margin-bottom: 1rem; /* Ajuster l'espacement si nécessaire */
+            }
+
+            /* Styles pour le bouton */
+            .btn-green {
+                display: inline-block;
+                background-color: #006400; /* Couleur verte */
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                border-radius: 5px;
+                text-decoration: none; /* Supprimer la soulignure du lien */
+                font-weight: bold;
+                transition: background-color 0.3s ease;
+            }
+
+            .btn-green:hover {
+                background-color: #004d00; /* Couleur verte plus foncée au survol */
+            }
+        </style>
+
+    {% endblock css %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">List of Animals</h1>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>State</th>
+                <th>Birth Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for animal in animals %}
+                <tr>
+                    <td>{{ animal.id }}</td>
+                    <td>{{ animal.nom }}</td>
+                    <td>{{ animal.etat }}</td>
+                    <td>{{ animal.dateNaissance ? animal.dateNaissance|date('Y-m-d') : '' }}</td>
+                    <td>
+                        <a href="{{ path('app_animal_show', {'id': animal.id}) }}" class="btn btn-success btn-sm">Show</a>
+                        <a href="{{ path('app_animal_edit', {'id': animal.id}) }}" class="btn btn-success btn-sm">Edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">No records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    
+    </table>
+    
+    <div class="text-center mt-4">
+        <a href="{{ path('app_animal_new') }}" class="btn btn-success">Create New Animal</a>
+    </div>
+
+</div>
+
+{% endblock %}

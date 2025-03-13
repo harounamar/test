@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Catalogue{% endblock %}
+
+{% block body %}
+
+    {% block css %}
+        <!-- bootstrap css -->
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <!-- style css -->
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <!-- Responsive-->
+        <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+        <!-- Scrollbar Custom CSS -->
+        <link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.min.css') }}">
+        <style>
+        /* Style du formulaire */
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2e8b57;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #228B22;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-control {
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background-color: #2e8b57;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-primary:hover {
+            background-color: #228b22;
+        }
+
+        .btn-secondary {
+            display: block;
+            text-align: center;
+            background-color: #6c757d;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+    </style>
+    {% endblock %}
+<div class="form-container">
+    <h1 style="text-align: center; margin-top: 50px;">Créer un nouveau Catalogue</h1>
+
+    {{ include('catalogue/_form.html.twig') }}
+
+    <a href="{{ path('app_catalogue_index') }}" class="btn-secondary" >Retour à la liste</a>
+</div>
+
+{% endblock %}

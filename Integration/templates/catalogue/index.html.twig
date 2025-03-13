@@ -1,0 +1,90 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Catalogue Index{% endblock %}
+
+{% block body %}
+
+
+    {% block css %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.min.css') }}">
+
+        <style>
+            h1.catalogue-title {
+                text-align: center; /* Centrer le texte */
+                color: #006400; /* Appliquer la couleur verte */
+            }
+
+            /* Appliquer la couleur verte aux en-têtes de la table */
+            .table th {
+                background-color: #006400;
+                color: white;
+            }
+
+            .table td {
+                color: #006400; /* Couleur verte pour les données */
+            }
+
+            .table.mb-3 {
+                margin-bottom: 1rem; /* Ajuster l'espacement si nécessaire */
+            }
+
+            /* Styles pour le bouton */
+            .btn-green {
+                display: inline-block;
+                background-color: #006400; /* Couleur verte */
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                border-radius: 5px;
+                text-decoration: none; /* Supprimer la soulignure du lien */
+                font-weight: bold;
+                transition: background-color 0.3s ease;
+            }
+
+            .btn-green:hover {
+                background-color: #004d00; /* Couleur verte plus foncée au survol */
+            }
+        </style>
+
+    {% endblock css %}
+    <h1 style="text-align: center; margin-top: 40px;color: green;" >Catalogue Index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Fournisseur</th>
+                <th>DateAjoutCat</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for catalogue in catalogues %}
+            <tr>
+                <td>{{ catalogue.id }}</td>
+                <td>{{ catalogue.description }}</td>
+                <td>{{ catalogue.fournisseur }}</td>
+                <td>{{ catalogue.dateAjoutCat ? catalogue.dateAjoutCat|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_catalogue_show', {'id': catalogue.id}) }}" class="btn btn-success btn-sm ">Afficher</a>
+                    <a href="{{ path('app_catalogue_edit', {'id': catalogue.id}) }}"class="btn btn-success btn-sm " >Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_catalogue_new') }}" class="btn-green">Ajouter</a>
+ 
+
+
+{% endblock %}

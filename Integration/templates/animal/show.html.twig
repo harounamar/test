@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Animal Details{% endblock %}
+{% block body %}
+    {% block css %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.min.css') }}">
+
+        <style>
+            h1.catalogue-title {
+                text-align: center; /* Centrer le texte */
+                color: #006400; /* Appliquer la couleur verte */
+            }
+
+            /* Appliquer la couleur verte aux en-têtes de la table */
+            .table th {
+                background-color: #006400;
+                color: white;
+            }
+
+            .table td {
+                color: #006400; /* Couleur verte pour les données */
+            }
+
+            .table.mb-3 {
+                margin-bottom: 1rem; /* Ajuster l'espacement si nécessaire */
+            }
+
+            /* Styles pour le bouton */
+            .btn-green {
+                display: inline-block;
+                background-color: #006400; /* Couleur verte */
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                border-radius: 5px;
+                text-decoration: none; /* Supprimer la soulignure du lien */
+                font-weight: bold;
+                transition: background-color 0.3s ease;
+            }
+
+            .btn-green:hover {
+                background-color: #004d00; /* Couleur verte plus foncée au survol */
+            }
+        </style>
+
+    {% endblock css %}
+<div class="container mt-5">
+    <!-- Animal details card -->
+     <div class="card">
+         <!-- <div class="card-header bg-primary">-->
+            <h4 class="card-title">Animal Information</h4>
+         <!--  </div>-->
+    </div>
+    <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ animal.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ animal.nom }}</td>
+                    </tr>
+                    <tr>
+                        <th>Etat</th>
+                        <td>{{ animal.etat }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date de Naissance</th>
+                        <td>{{ animal.dateNaissance ? animal.dateNaissance|date('Y-m-d') : 'N/A' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Buttons for navigation -->
+    <div class="text-center mt-4">
+        <a href="{{ path('app_animal_index') }}" class="btn btn-secondary btn-lg">
+            <i class="fa fa-arrow-left"></i> Back to List
+        </a>
+        <a href="{{ path('app_animal_edit', {'id': animal.id}) }}" class="btn btn-secondary">
+            <i class="fa fa-edit"></i> Edit
+        </a>
+    </div>
+
+    <!-- Delete form -->
+    <div class="text-center mt-4">
+        <a href="#" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#deleteModal">
+            <i class="fa fa-trash-alt"></i> Delete Animal
+        </a>
+    </div>
+
+    <!-- Modal for Delete Confirmation -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this animal? This action cannot be undone.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                        <i class="fa fa-times"></i> Cancel
+                    </button>
+                    {{ include('animal/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

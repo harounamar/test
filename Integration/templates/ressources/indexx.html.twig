@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une ressource{% endblock %}
+
+
+{% block body %}
+
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center text-white display-5">Ajouter une Ressource</h1>
+        <div class="card shadow p-4 bg-white">
+         {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }} 
+            <div class="mb-3">
+                {{ form_label(form.type, 'Type de ressource', {'label_attr': {'class': 'form-label fw-bold text-success'}}) }}
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-box"></i></span>
+                    {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                {{ form_errors(form.type) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.quantiteDisponible, 'Quantité disponible en kg / Litres ', {'label_attr': {'class': 'form-label fw-bold text-success'}}) }}
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-sort-numeric-up"></i></span>
+                    {{ form_widget(form.quantiteDisponible, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                {{ form_errors(form.quantiteDisponible) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.dateAjout, 'Date d\'ajout', {'label_attr': {'class': 'form-label fw-bold text-success'}}) }}
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                    {{ form_widget(form.dateAjout, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                {{ form_errors(form.dateAjout) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.catalogues, 'Catalogues associés', {'label_attr': {'class': 'form-label fw-bold text-success'}}) }}
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-book"></i></span>
+                    {{ form_widget(form.catalogues, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                {{ form_errors(form.catalogues) }}
+            </div>
+
+            <button type="submit" class="btn btn-success">Ajouter</button>
+        {{ form_end(form) }}
+
+        <a href="{{ path('app_ressources_index') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
+    </div>
+        </div>
+
+{% endblock %}
