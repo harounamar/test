@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une ressource{% endblock %}
+
+{% block body %}
+
+  
+<div class="container mt-5">
+    <h1 class="mb-4 text-center text-white ">Modifier la ressource</h1>
+    <div class="card shadow p-4">
+        {{ form_start(form) }} <!-- Démarre le formulaire -->
+
+        <div class="mb-3">
+            {{ form_label(form.type, 'Type de ressource', {'label_attr': {'class': 'form-label fw-bold text-success'}}) }}
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-box"></i></span>
+                {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            {{ form_errors(form.type) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.quantiteDisponible, 'Quantité disponible', {'label_attr': {'class': 'form-label fw-bold text-success'}}) }}
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-sort-numeric-up"></i></span>
+                {{ form_widget(form.quantiteDisponible, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            {{ form_errors(form.quantiteDisponible) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.dateAjout, 'Date d\'ajout', {'label_attr': {'class': 'form-label fw-bold text-success'}}) }}
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                {{ form_widget(form.dateAjout, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            {{ form_errors(form.dateAjout) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.catalogues, 'Catalogues associés', {'label_attr': {'class': 'form-label fw-bold text-success'}}) }}
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-book"></i></span>
+                {{ form_widget(form.catalogues, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            {{ form_errors(form.catalogues) }}
+        </div>
+
+        
+        <div class="mb-3">
+
+        <button type="submit" class="btn btn-success">Sauvegarder</button> <!-- Bouton de soumission -->
+        </div>
+        {{ form_end(form) }}
+
+        <a href="{{ path('app_ressources_index') }}" class="btn btn-secondary mt-8" style="width:100%">Retour à la liste</a>
+
+
+    </div>
+</div>
+    
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Production{% endblock %}
+
+{% block body %}
+    {% block css %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.min.css') }}">
+
+        <style>
+            h1.catalogue-title {
+                text-align: center; /* Centrer le texte */
+                color: #006400; /* Appliquer la couleur verte */
+            }
+
+            /* Appliquer la couleur verte aux en-têtes de la table */
+            .table th {
+                background-color: #006400;
+                color: white;
+            }
+
+            .table td {
+                color: #006400; /* Couleur verte pour les données */
+            }
+
+            .table.mb-3 {
+                margin-bottom: 1rem; /* Ajuster l'espacement si nécessaire */
+            }
+
+            /* Styles pour le bouton */
+            .btn-green {
+                display: inline-block;
+                background-color: #006400; /* Couleur verte */
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                border-radius: 5px;
+                text-decoration: none; /* Supprimer la soulignure du lien */
+                font-weight: bold;
+                transition: background-color 0.3s ease;
+            }
+
+            .btn-green:hover {
+                background-color: #004d00; /* Couleur verte plus foncée au survol */
+            }
+        </style>
+
+    {% endblock css %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Production Details</h1>
+
+        <!-- Production Details Table -->
+        <table class="table table-bordered table-striped">
+            <tbody>
+                <tr>
+                    <th scope="row">Id</th>
+                    <td>{{ production.id }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">DateProd</th>
+                    <td>{{ production.dateProd ? production.dateProd|date('Y-m-d') : '' }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Type</th>
+                    <td>{{ production.type }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">QuantiteProd</th>
+                    <td>{{ production.quantiteProd }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">QualiteProd</th>
+                    <td>{{ production.qualiteProd }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Action Buttons -->
+        <div class="mt-4">
+            <a href="{{ path('app_production_index') }}" class="btn btn-secondary">Back to List</a>
+            <a href="{{ path('app_production_edit', {'id': production.id}) }}" class="btn btn-success btn-sm">Edit</a>
+            {{ include('production/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

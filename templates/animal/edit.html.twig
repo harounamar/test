@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}  
+
+{% block body %}  
+
+
+<!-- Formulaire de modification -->  
+<div class="container" style="margin-top: 50px;">  
+    <h1 style="text-align: center; margin-bottom: 50px;">Edit Animal</h1>  
+
+    {{ form_start(form) }}  
+        {{ form_row(form.nom) }}  
+        {{ form_row(form.etat) }}  
+        {{ form_row(form.dateNaissance) }}  
+        <button type="submit" class="btn btn-success btn-sm">Update</button>
+    {{ form_end(form) }}  
+
+    <div style="text-align: center; margin-top: 20px;">  
+        <a href="{{ path('app_animal_index') }}" class="btn btn-secondary">Back to List</a>  
+    </div>  
+
+    {{ include('animal/_delete_form.html.twig') }}  
+</div>  
+{% endblock %}
